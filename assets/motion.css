@@ -1,0 +1,85 @@
+/* Ribbon artwork and interaction layer */
+[data-bow], [data-bow-variant] { --bow-color: #eab3ca; --bow-line: #262424; }
+body[data-theme="pink"] [data-bow], body[data-theme="pink"] [data-bow-variant] { --bow-color: transparent; --bow-line: #fffaf5; }
+.bow-inner { display: block; width: 100%; height: 100%; transform: translate(var(--bow-x, 0), var(--bow-y, 0)) rotate(var(--bow-tilt, 0deg)); transition: transform 650ms cubic-bezier(.2,.8,.2,1); will-change: transform; }
+.bow-art { display: block; width: 100%; height: 100%; overflow: visible; }
+.bow-shape { fill: var(--bow-color, #eab3ca); stroke: var(--bow-line, #292526); stroke-width: 3; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.bow-crease { fill: none; stroke: var(--bow-line, #292526); stroke-width: 2; stroke-linecap: round; opacity: .75; vector-effect: non-scaling-stroke; }
+.bow-loop, .bow-tail { transform-box: fill-box; }
+.bow-loop-left, .bow-tail-left { transform-origin: right center; }
+.bow-loop-right, .bow-tail-right { transform-origin: left center; }
+[data-motion="sway"] .bow-loop-left { animation: bow-left 4.8s ease-in-out infinite; }
+[data-motion="sway"] .bow-loop-right { animation: bow-right 4.8s ease-in-out infinite; }
+[data-motion="sway"] .bow-tail-left { animation: tail-left 4.8s ease-in-out infinite; }
+[data-motion="sway"] .bow-tail-right { animation: tail-right 4.8s ease-in-out infinite; }
+[data-motion="draw"] .bow-shape, [data-motion="draw"] .bow-crease { stroke-dasharray: 1300; animation: bow-draw 4.6s ease-in-out infinite; }
+[data-motion="draw"] .bow-loop-left { animation: bow-fold-left 4.6s ease-in-out infinite; }
+[data-motion="draw"] .bow-loop-right { animation: bow-fold-right 4.6s ease-in-out infinite; }
+[data-motion="follow"] .bow-inner { cursor: grab; touch-action: pan-y; }
+[data-motion="follow"] .bow-inner:active { cursor: grabbing; }
+.bow-observed [data-bow]:not(.bow-in-view) *, .bow-observed [data-bow-variant]:not(.bow-in-view) * { animation-play-state: paused !important; }
+.bow-preview { min-height: 220px; width: 100%; display: grid; place-items: center; overflow: hidden; }
+.bow-preview .bow-inner { width: min(100%, 300px); aspect-ratio: 1; }
+.bow-button { position: relative; isolation: isolate; overflow: hidden; }
+.bow-button > :not(.bow-button-art) { position: relative; z-index: 2; }
+.bow-button-art { position: absolute; z-index: -1; width: 150%; aspect-ratio: 1; left: -25%; top: 50%; transform: translateY(-50%) scale(.12); opacity: 0; transition: transform .65s cubic-bezier(.2,.8,.2,1), opacity .35s ease; pointer-events: none; --bow-color: #eab3ca; --bow-line: #eab3ca; }
+.bow-button:hover .bow-button-art, .bow-button:focus-visible .bow-button-art { transform: translateY(-50%) scale(1.25); opacity: 1; }
+.bow-button:hover, .bow-button:focus-visible { color: #292526; }
+body[data-theme="pink"] .bow-button-art { --bow-color: #fffaf5; --bow-line: #fffaf5; }
+.project-card .project-caption { position: relative; isolation: isolate; overflow: hidden; }
+.project-card .project-caption::before { content: ""; position: absolute; inset: 0; background: #eab3ca; transform: translateY(101%); z-index: -1; transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+.project-card:hover .project-caption::before, .project-card:focus-visible .project-caption::before, .project-card:focus-within .project-caption::before { transform: translateY(0); }
+.project-card:hover .project-caption, .project-card:focus-visible .project-caption, .project-card:focus-within .project-caption { color: #292526; }
+body[data-theme="pink"] .project-caption::before { background: #fffaf5; }
+.bow-loader { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; color: #eab3ca; background: #292526; pointer-events: none; opacity: 1; transition: opacity .4s ease, visibility .4s; }
+.bow-loader.is-finished { opacity: 0; visibility: hidden; }
+.bow-loader-mark { width: 150px; text-align: center; font: 500 12px/1 sans-serif; letter-spacing: .25em; }
+.bow-loader .bow-art { height: 140px; --bow-color: transparent; --bow-line: #eab3ca; }
+.bow-loader .bow-shape, .bow-loader .bow-crease { stroke-dasharray: 1300; animation: loader-draw .8s ease both; }
+@keyframes bow-left { 0%,100% { transform: rotate(-1deg); } 50% { transform: rotate(3deg); } }
+@keyframes bow-right { 0%,100% { transform: rotate(1deg); } 50% { transform: rotate(-3deg); } }
+@keyframes tail-left { 0%,100% { transform: rotate(-1deg); } 50% { transform: rotate(3deg); } }
+@keyframes tail-right { 0%,100% { transform: rotate(1deg); } 50% { transform: rotate(-3deg); } }
+@keyframes bow-draw { 0%, 8% { stroke-dashoffset: 1300; fill-opacity: 0; } 38%, 80% { stroke-dashoffset: 0; fill-opacity: 1; } 100% { stroke-dashoffset: 0; fill-opacity: 1; } }
+@keyframes bow-fold-left { 0%, 12% { transform: scaleX(.35) rotate(-12deg); opacity: .3; } 45%, 100% { transform: scaleX(1) rotate(0); opacity: 1; } }
+@keyframes bow-fold-right { 0%, 12% { transform: scaleX(.35) rotate(12deg); opacity: .3; } 45%, 100% { transform: scaleX(1) rotate(0); opacity: 1; } }
+@keyframes loader-draw { from { stroke-dashoffset: 1300; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  [data-bow] *, [data-bow-variant] *, .bow-button-art, .project-caption::before { animation: none !important; transition-duration: .01ms !important; }
+}
+
+/* Larger previews keep the ribbon detail visible at every viewport size. */
+.motion-preview { height: 260px; }
+.motion-preview .bow-preview { width: min(100%, 260px); height: 260px; min-height: 0; }
+.motion-preview .bow-inner { width: 100%; height: 100%; }
+.motion-item button { position: relative; padding-right: 75px; }
+.motion-item button[aria-pressed="true"] { color: #eab3ca; text-decoration: underline; text-underline-offset: 5px; }
+.motion-selected-label { display: none; position: absolute; right: 0; top: 17px; padding: 4px 7px; border: 1px solid currentColor; border-radius: 20px; font-size: 10px; line-height: 1; text-decoration: none; }
+.motion-item button[aria-pressed="true"] .motion-selected-label { display: inline-block; }
+.motion-description { margin: 10px 0 2px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+body[data-theme="pink"] .motion-item button[aria-pressed="true"] { color: #292727; }
+body[data-theme="pink"] a:focus-visible, body[data-theme="pink"] button:focus-visible { outline-color: #292727; }
+
+/* A row of ribbons appears behind the button label on interaction. */
+.bow-button-art { inset: 0; width: 100%; height: 100%; aspect-ratio: auto; display: flex; align-items: center; justify-content: space-around; gap: 0; padding: 0 4px; transform: none; opacity: 0; background: #eab3ca; transition: opacity .35s ease; }
+.bow-button-art .bow-art { flex: 0 0 34px; width: 34px; height: 34px; opacity: .25; transform: translateY(24px) rotate(-12deg); transition: transform .5s cubic-bezier(.2,.8,.2,1); --bow-color: #292727; --bow-line: #292727; }
+.bow-button-art .bow-art:nth-child(even) { transform: translateY(-24px) rotate(12deg); transition-delay: .05s; }
+.bow-button:hover .bow-button-art, .bow-button:focus-visible .bow-button-art { transform: none; opacity: 1; }
+.bow-button:hover .bow-button-art .bow-art, .bow-button:focus-visible .bow-button-art .bow-art { transform: translateY(0) rotate(0); }
+body[data-theme="pink"] .bow-button-art { background: #fffaf5; }
+
+/* A translucent wipe preserves the project image while marking the link. */
+.project-card { position: relative; }
+.project-card::before { content: ""; position: absolute; z-index: 1; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; background: linear-gradient(90deg, rgba(234,179,202,.42), rgba(234,179,202,.08)); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+.project-card::after { content: "Смотреть проект ↗"; position: absolute; z-index: 2; top: 22px; right: 22px; padding: 11px 16px; border-radius: 100px; color: #292727; background: #fffaf5; font-size: 12px; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+.project-card:hover::before, .project-card:focus-visible::before { transform: scaleX(1); }
+.project-card:hover::after, .project-card:focus-visible::after { opacity: 1; transform: translateY(0); }
+@media (max-width: 700px) {
+  .motion-preview { height: 250px; }
+  .motion-preview .bow-preview { width: min(100%, 250px); height: 250px; }
+  .project-card::before { aspect-ratio: 4 / 3; }
+  .project-card::after { top: 12px; right: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bow-button-art .bow-art, .project-card::before, .project-card::after { transition: none !important; }
+}

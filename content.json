@@ -1,0 +1,431 @@
+{
+  "profile": {
+    "name": "Лаура Ахметова",
+    "role": "Коммуникационный дизайнер с опытом 3+ года",
+    "photo": "assets/img/Cu4nTh9SOAEUHch3rN5iS6zJhA-ade0e6e4.jpg"
+  },
+  "hero": {
+    "title": "От айдентики до полиграфии — дизайн, который помогает продавать",
+    "description": "Онлайн-сервисы, ритейл и бьюти · Мои работы принесли охват ×2,6, продажи сертификатов +28%, CTR креатива ×2,3",
+    "availability": "Открыта к предложениям"
+  },
+  "ctas": [
+    {
+      "label": "Связаться со мной",
+      "action": "Написать в Telegram",
+      "url": "https://t.me/lrhmtva"
+    },
+    {
+      "label": "CV (ЯДиск)",
+      "action": "Посмотреть",
+      "url": "https://disk.yandex.ru/i/1TDg39PJeJOGkw"
+    },
+    {
+      "label": "CV (Гугл)",
+      "action": "Посмотреть",
+      "url": "https://drive.google.com/file/d/1YU8XrZVeDKVCNOQAvMSn2rMBLlJOJXlB/view?usp=sharing"
+    }
+  ],
+  "ticker": [
+    {
+      "type": "video",
+      "src": "assets/video/JdmQDxpiwXfAKiBCwYVODAqz4.mp4",
+      "poster": "assets/img/2yvbI9MRizXEpOlxTIISnVEefA.png"
+    },
+    {
+      "type": "video",
+      "src": "assets/video/EqAK1rb9Ll1AioTtsVS1atBpE.mp4",
+      "poster": "assets/img/aTDxhBb80UmcEKQ9KbTye5wf7EM.png"
+    },
+    {
+      "type": "video",
+      "src": "assets/video/OIa96Ubsmi0mH4Rdsrld8Axt0w.mp4",
+      "poster": "assets/img/ZbNocjFNLCyLV9Rl4swbCcSMgM.png"
+    },
+    {
+      "type": "video",
+      "src": "assets/video/se7lKKm7fJBY6SnKFL6CwfqiFIU.mp4"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/LemuSKwB9KlDaqzdHC494u95GJU.png"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/31INRFd8CO7VXvGsdzUMFHO4.webp"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/ErzbP0UcBAxlnChUCF1LkB25huE.webp"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Игра для двоих",
+      "slug": "igra-dlya-dvoih",
+      "cover": "assets/img/6sb1JjYXS6TV4Lk4wuybSLhLYvA.png",
+      "logo": "assets/img/qPDvMqjz7jsJRjTb3AzYMAxqtQA.svg",
+      "description": "Я создала бренд с нуля для Telegram-игры с вопросами и заданиями для пар 25+ — от характера бренда до 200+ макетов для игры, Instagram, сайта и гайдов. Одна визуальная система ведёт человек от первого поста до карточки в боте, а команда выпускает новый контент по шаблонам",
+      "body": [
+        "5 каналов",
+        "Telegram-бот, Instagram, сайт, гайды, рассылка",
+        "200+",
+        "макетов и адаптаций",
+        "1 гайдлайн",
+        "палитра, шрифты, иллюстрации и шаблоны",
+        "запуск в срок",
+        "1–2 месяца на реализацию",
+        "01",
+        "Задача коммуникации",
+        "Один визуальный язык — от первого поста до карточки в боте",
+        "Я разработала айдентику Telegram-игры для пар. Сайт и Instagram знакомили с игрой и вели в бот. Моей задачей было сохранить один характер бренда на обоих этапах и сделать карточки удобными для чтения вдвоём с одного телефона",
+        "Коммуникация 1",
+        "Знакомство с игрой",
+        "На сайте и в Instagram я показала, чего ждать от игры — от лёгких вопросов до более откровенных заданий",
+        "Коммуникация 2",
+        "Карточки в Telegram",
+        "Я отделила уровень и тип задания. от основного текста. Само задание набрала крупнее, чтобы оно читалось с расстояния вытянутой руки",
+        "Роль 1. Для бизнеса",
+        "Запустить продукт в срок и получить визуальную основу для продвижения и нового контента",
+        "Роль 2. Для пары",
+        "Легко разобраться в игре и выбрать формат, комфортный для обоих",
+        "Роль 3. Для команды",
+        "Выпускать карточки, посты и гайды без участия дизайнера в каждом макете",
+        "02",
+        "Отзывы о MVP",
+        "Что показала первая версия игры",
+        "Механика игры",
+        "Не хватало самостоятельного выбора между «правдой» и «действием»",
+        "Контент",
+        "Повторяющиеся задания ограничивали разнообразие",
+        "Тон",
+        "Часть аудитории ожидала больше романтики",
+        "Оформление карточек и удобство бота",
+        "Эстетика карточек и удобство бота получали положительные отзывы",
+        "Вывод",
+        "После отзывов команда добавила выбор между «правдой» и «действием». Я сохранила выразительность карточек, которую отметили игроки, и учла запрос на романтику в айдентике — через тёплую красно-бордовую палитру, мягкие линии и акцентный курсив",
+        "03",
+        "Характер бренда",
+        "Взрослый, чувственный, игривый",
+        "Я хотела, чтобы оформление приглашало к близкому разговору и сохраняло лёгкость игры. Этот характер я передала через цвет, композицию и типографику",
+        "Взрослый",
+        "Глубокие бордовые фоны, сдержанная композиция, много воздуха",
+        "Чтобы игра выглядела как продукт за свои деньги",
+        "Чувственный",
+        "Тёплый красный, мягкие линии иллюстраций, курсивные акценты",
+        "Чтобы передать близость без прямоты",
+        "Игривый",
+        "«Правда» и «Действие» рукописным акцентом, пересекающиеся формы",
+        "Чтобы вечер оставался игрой, а не терапией",
+        "Что избегаем",
+        "Перегруженный декор",
+        "Детскую стилистику",
+        "«Дешёвого» вида",
+        "Стоковые фото пар",
+        "04",
+        "Поиск концепции",
+        "Почему для запуска выбрали «Чувственность»",
+        "Территория A",
+        "Нежность",
+        "Не выбрали",
+        "Рукописный шрифт",
+        "В первом варианте я соединила светлую сиреневую палитру с рукописным шрифтом. Вместе они создавали более юный образ, чем хотелось для игры для пар 25+",
+        "Территория B",
+        "Чувственность",
+        "Выбрали для запуска",
+        "Разборчивый основной шрифт и акцентный курсив",
+        "Во втором варианте я использовала тёплый красный и глубокий бордовый. Палитра лучше передавала взрослый, чувственный характер игры, а курсив добавлял лёгкости",
+        "Было — Рукописный текст задания",
+        "Рукописное начертание выглядело выразительно, но длинное задание было трудно прочитать с телефона в полумраке",
+        "Стало — Курсив в акцентах",
+        "Я оставила курсив для слов «Правда» и «Действие», а сами задания набрала крупнее разборчивым шрифтом, чтобы их было удобно читать вдвоём с одного экрана",
+        "05",
+        "Айдентика",
+        "Две формы, одно пересечение",
+        "Два круга — двое партнёров. Пересечение — то, что они открывают друг в друге во время игры",
+        "Цвет и роли",
+        "Вино — фоны, уровень 3; Красный — акценты, кнопки; Роза — уровень 2, stories; Румянец — уровень 1, текст на тёмном",
+        "Пары текст / фон",
+        "Красный на розе запрещён — не хватает контраста",
+        "Шрифты",
+        "Иллюстрации",
+        "Две линии, две формы — пара в каждом рисунке. Без людей и стоковых фото",
+        "06",
+        "Главный носитель",
+        "Карточка, которую читают вдвоём с одного телефона",
+        "1",
+        "Уровень текстом",
+        "Сложность понятна без расшифровки цвета",
+        "2",
+        "Тип задания",
+        "«Правда» или «Действие» акцентным начертанием",
+        "3",
+        "Основной текст",
+        "Разборчивый шрифт, крупный кегль, читается на расстоянии вытянутой руки",
+        "4",
+        "Иллюстрация",
+        "Декоративный слой отделён от текста и не спорит с ним",
+        "Знакомство",
+        "румянец, лёгкие вопросы",
+        "Ближе",
+        "роза, больше открытости",
+        "Смелее",
+        "вино, самые откровенные",
+        "Цвет ведёт по уровням от светлого к глубокому — как вечер. Тексты заданий — примеры",
+        "Проверка в Telegram и тестирование сценария",
+        "Макет проверяется в чате, а не в Figma",
+        "Загружала карточки в бот",
+        "Смотрела сжатие, поля пузыря, светлую и тёмную тему, правила размеры по реальному телефону",
+        "Тестировала сценарий",
+        "Понятность следующего шага, порядок, названия кнопок. Логику бота проектировала не я — давала обратную связь команде",
+        "Выбор формата",
+        "После отзывов MVP команда добавила самостоятельный выбор «правды» или «действия»",
+        "07",
+        "Кампания запуска",
+        "Узнаёшь игру ещё до того, как открыл бот",
+        "Instagram · сетка постов",
+        "Ритм сетки: вино — роза — румянец. Лента читается как одно целое",
+        "Stories · 3 кадра",
+        "Сайт · первый экран",
+        "Гайд · 10 идей для вечера вдвоём",
+        "Пост, stories, сайт, гайд и карточка в боте используют одни цвета, шрифты и иллюстрации — обещание рекламы совпадает с тем, что пара видит в игре",
+        "08",
+        "Система",
+        "Гайдлайн и шаблоны для 200+ макетов",
+        "Носитель",
+        "Канал",
+        "Шаблон",
+        "Кто выпускает",
+        "Карточка задания",
+        "Telegram-бот",
+        "3 уровня × правда / действие",
+        "Автор текстов + шаблон",
+        "Пост",
+        "Instagram",
+        "Слоган · пример задания · иллюстрация",
+        "Маркетинг + шаблон",
+        "Stories",
+        "Серия из 3 кадров с CTA",
+        "Гайд",
+        "Бонус к тарифу",
+        "Обложка и разворот",
+        "Дизайнер",
+        "Блоки сайта",
+        "Сайт",
+        "Изображения в стиле системы",
+        "Разработчик сайта",
+        "01 Логотип",
+        "Охранное поле, минимальный размер, версии",
+        "02 Цвет",
+        "Роли цветов и допустимые пары",
+        "03 Шрифты",
+        "Иерархия и кегли для телефона",
+        "04 Карточки",
+        "Шаблоны уровней и правила текста",
+        "Исходники в Figma и Adobe Illustrator — команда собирает новые материалы сама, стиль не расходится",
+        "09",
+        "Работа с командой",
+        "Основатели, маркетинг, авторы, разработка",
+        "Визуальное направление → Комментарии команды → Адаптация под контент → Передача файлов → Проверка после загрузки",
+        "Передача",
+        "Готовые изображения для сайта и бота, исходники в Illustrator и Figma, пояснения по использованию",
+        "После загрузки",
+        "Проверяла отображение на сайте и в боте, вносила корректировки",
+        "Инициатива после запуска",
+        "Оформила гайд в подарок к большому тарифу. Предложила рассылку зарегистрированным с приглашением вернуться в игру",
+        "10",
+        "Результаты",
+        "Бренд с нуля и запуск в срок",
+        "— Характер бренда и визуальная концепция — Логотип, палитра, типографика, иллюстрации — Гайдлайн с правилами и шаблонами — 200+ макетов: карточки, Instagram, гайды, сайт — Проверка карточек в Telegram и тестирование сценария — Эстетику карточек отмечали в отзывах MVP",
+        "Данные команды:",
+        "80%",
+        "из регистрации в первую игру",
+        "4%",
+        "удержание 7-го дня",
+        "0,8%",
+        "из регистрации в покупку"
+      ],
+      "gallery": []
+    },
+    {
+      "title": "Growly",
+      "slug": "growly",
+      "cover": "assets/img/lGU6LhhlX7UVolkKorteot0QMI.png",
+      "logo": "assets/img/LLGE1p1zXKMIhiXJxukmJOqn94.svg",
+      "description": "Empower Your Vision with a Modern, Streamlined Design.",
+      "body": [
+        "Growly is a next-generation project crafted to revolutionize the way finance and banking websites operate. In an era where trust, security, and seamless digital experiences are crucial, Growly delivers a powerful and intuitive solution tailored for financial institutions, fintech startups, and banking platforms.",
+        "With a focus on modern aesthetics, intuitive navigation, and high-performance design, Growly ensures that financial brands can connect with their audience while maintaining a professional and trustworthy online presence. From sleek UI components to secure, conversion-driven layouts, every element is designed to maximize user engagement and build credibility.",
+        "✅ A clean, polished interface that exudes trust and authority. ✅ Intuitive navigation for effortless interactions. ✅ Ensuring speed, compliance, and data protection. ✅ Designed to increase user trust and maximize sign-ups. ✅ Adaptable for banks, fintech startups, and financial service providers.",
+        "With Growly, financial brands can elevate their online presence, build stronger customer relationships, and stay ahead in the competitive digital landscape. Whether launching a new platform or revamping an existing one, Growly ensures a flawless experience that blends innovation with reliability.",
+        "🚀 Grow your financial brand with Growly—where design meets trust and efficiency!"
+      ],
+      "gallery": [
+        "assets/img/lGU6LhhlX7UVolkKorteot0QMI.png",
+        "assets/img/vZhEWarJivnNCLLARoXgc0Ys5g.png",
+        "assets/img/r1VyZfyZNZiZWNLsVOREtkQjUI.png",
+        "assets/img/j12V6LKjXwBUPcTcnziSDVg4rqQ.png",
+        "assets/img/eAOdn862L8nTIMyGAI0uBV2GQQQ.png"
+      ]
+    },
+    {
+      "title": "Glidex",
+      "slug": "glidex",
+      "cover": "assets/img/CLZhCPMlL2EPY75pz7qo4vhGGzw.png",
+      "logo": "assets/img/3UBhuourpwlCeqx03V6QWYkok.svg",
+      "description": "Elevating Videography with Stunning Digital Experiences",
+      "body": [
+        "Glidex is a cutting-edge website crafted for videography studios that want to showcase their work with elegance, precision, and innovation. Designed with a seamless UI/UX experience and developed in Framer, Glidex ensures a visually captivating and high-performance digital presence that resonates with creative professionals and clients alike.",
+        "Whether you're a film production house, content creator, or cinematographer, Glidex is built to highlight your storytelling through immersive visuals and smooth interactivity.",
+        "🎥 A sleek, modern, and engaging interface tailored for visual storytelling. 🚀 Lightning-fast development for a seamless user experience. 🎬 Designed to let your videography shine effortlessly. 🔹 Elevate your brand with fluid motion and dynamic visuals. 🎞 Perfect for independent creators, studios, and agencies.",
+        "With Glidex, your videography studio gets more than just a website—it gets a premium digital experience that enhances your brand, engages your audience, and sets you apart in the industry.",
+        "📽 Let your visuals speak louder than words—Glidex brings your story to life."
+      ],
+      "gallery": [
+        "assets/img/CLZhCPMlL2EPY75pz7qo4vhGGzw.png",
+        "assets/img/PVMr2ShgT1v08X9fNPpsbdRQwmg.png",
+        "assets/img/Gk7AVadR28XRmbOy3fn6DnH16c.png",
+        "assets/img/YLgRn3oO5bmXxyXp51VzFQehFXc.png",
+        "assets/img/RsU4U9tSov4ydz5A4y1BrERacg.png"
+      ]
+    },
+    {
+      "title": "Aether Studio",
+      "slug": "aether-studio",
+      "cover": "assets/img/EVgp4FfBKeWyGi51Bui2IUDZsG0.png",
+      "logo": "assets/img/gYoAsCKXdkDg7dbQ7ETRorhhA0.svg",
+      "description": "Where Architecture Meets Digital Excellence",
+      "body": [
+        "Aether Studio is a premium digital experience designed for architects, interior designers, and creative studios that shape the spaces we live in. With a focus on elegant UI/UX design and seamless Framer development, Aether Studio brings architectural visions to life through a modern, immersive, and high-performance online presence.",
+        "Whether you're an architecture firm, interior design studio, or construction brand, Aether Studio is built to showcase your projects with precision, sophistication, and a user-centric approach.",
+        "🏛 A seamless blend of elegance and functionality. 🚀 Fast, interactive, and optimized for performance. 🏡 Highlight your projects with stunning visuals. 🎭 Smooth animations and interactions that enhance engagement. 🔹 Designed for architects, interior designers, and builders alike.",
+        "With Aether Studio, your work is presented in a way that inspires, captivates, and impresses clients and industry leaders. It’s more than just a website—it’s a digital masterpiece for design visionaries.",
+        "✨ Bring your architectural vision to life—Aether Studio is where design meets innovation."
+      ],
+      "gallery": [
+        "assets/img/EVgp4FfBKeWyGi51Bui2IUDZsG0.png",
+        "assets/img/2wIifx4QZtr3Qon18QBxcBrtBqg.png",
+        "assets/img/6zYTwmdg5nbGTmCcfeeCbzKD3g.png",
+        "assets/img/TyEM7VchzTqgAtdJuvoCpthNs.png",
+        "assets/img/jPEzl2WkyMJps5tJz4RfXQQbBBg.png"
+      ]
+    },
+    {
+      "title": "VaultX",
+      "slug": "vaultx",
+      "cover": "assets/img/6WFXJKIrqOV3OI4Ic0ghq3vf0fw.png",
+      "logo": "assets/img/zRnuXrGDox7dVChfMCVhCEI6bZA.svg",
+      "description": "The Future of Blockchain & Web3 Experiences",
+      "body": [
+        "In the evolving world of Web3 and blockchain, VaultX is designed to set new standards for digital innovation. With a sleek dark-themed aesthetic, cutting-edge design, and seamless development, VaultX delivers an immersive and futuristic experience tailored for crypto, DeFi, and NFT platforms.",
+        "Built using Figma for precision design and developed in Framer for high-performance interactions, VaultX ensures a smooth and engaging user journey while maintaining the reliability and trust essential for blockchain-based platforms.",
+        "🔹 Themed UI – A sleek, modern design that enhances engagement and trust. 🔹 Optimized for blockchain, DeFi, and NFT applications. 🔹 Crafted in Framer for smooth animations and lightning-fast experiences. 🔹 Designed to enhance usability while prioritizing security. 🔹 Perfect for startups and enterprises looking to make an impact in Web3.",
+        "With VaultX, blockchain projects gain more than just a website—they get a powerful digital experience that resonates with Web3 enthusiasts and investors alike. Whether launching a DeFi app, an NFT marketplace, or a blockchain-powered platform, VaultX is your gateway to success in the decentralized future.",
+        "🚀 Enter the Web3 era with VaultX—where design meets innovation."
+      ],
+      "gallery": [
+        "assets/img/6WFXJKIrqOV3OI4Ic0ghq3vf0fw.png",
+        "assets/img/A0VELO2iy2lgenZQRJTzyFov7oY.png",
+        "assets/img/MLPshVQ0Swbtgrho0PyNnWgY.png",
+        "assets/img/uQEXIOgS39mlc9xqCDCrYFSSw.png",
+        "assets/img/Fwjt5wBQX8zDvq17O8lfOR0J4U.png"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Графический дизайнер",
+      "company": "Проектная работа с брендами",
+      "period": "Декабрь 2023 — настоящее время",
+      "paragraphs": [
+        "Брендинг, SMM-дизайн и рекламные материалы для онлайн-сервисов, студий и малого бизнеса",
+        "1. Онлайн-игра для пар · фирменный стиль и SMM к запуску",
+        "Запуск в срок, охват в Instagram увеличился в 2.6 раз, ER — 4,45%",
+        "Конверсия из профиля в бота — 12%, из бота в регистрацию — 10%,",
+        "из регистрации в первую игру — 80%, retention 7-го дня — 4%",
+        "Конверсия из регистрации в покупку — 0,8%, CAC снизился на 40%",
+        "Разработка фирменного стиля: логотип, палитра, типографика, иллюстрации, гайдлайн, посты, подготовка 200+ шаблонов",
+        "2. Студия автопортрета · подарочные сертификаты",
+        "Редизайн 8 форматов печатных и электронных сертификатов в едином фирменном стиле",
+        "Адаптация под соцсети и сайт, подбор дизайнерской бумаги, подготовка",
+        "к печати, контроль тиража",
+        "Результат: конверсия из просмотра сертификата в покупку увеличилась с 2,5% до 3,2%, CTR сторис — 3%",
+        "Продажи сертификатов увеличились на 28%, доля активированных сертификатов — 86%",
+        "3. Айдентика",
+        "Cue & Sound · бар-магазин о бильярде и виниле — обзор рынка, характер бренда, логотип, палитра, носители, ретушь и цветокоррекция фото. Рост подписчиков — 4% в месяц",
+        "RAIN · бренд дождевиков — анализ конкурентов, портрет ЦА, ценности бренда, логотип и фирменный стиль. Конверсия карточки в корзину — 7%, корзины",
+        "в заказ — 30%, повторные покупки — 28%",
+        "Ameli · гончарная мастерская — логотип через ассоциативный поиск, гайдлайн, визуал на лицензионных стоках",
+        "4. Промо и полиграфия",
+        "Открытки, календари, игральные карты с упаковкой — от макета до тиража",
+        "Генерация и доработка изображений в нейросетях: коллажи, анимированные изображения, иллюстрации, 200+ макетов в неделю"
+      ]
+    },
+    {
+      "role": "Графический дизайнер",
+      "company": "Типография «Копирка»",
+      "period": "Январь 2024 — апрель 2024",
+      "paragraphs": [
+        "Вёрстка и препресс полиграфии: визитки, календари, открытки, дипломы, блокноты",
+        "Проверка макетов перед печатью: вылеты, разрешение, цветовые профили CMYK, шрифты. Доля перепечаток — меньше 1%",
+        "Консультации клиентов по бумаге, печати и постпечатной обработке: 20% клиентов выбирали доп. отделку, средний чек заказа увеличился на 15%",
+        "Широкоформатная печать, плоттерная резка, ламинация, брошюровка, CorelDraw"
+      ]
+    },
+    {
+      "role": "Графический дизайнер",
+      "company": "«Северный Ветер Полипринт»",
+      "period": "Ноябрь 2022 — ноябрь 2023",
+      "paragraphs": [
+        "Интегрированные кампании для ритейла, FMCG и сервисов. В команде: арт-директор, 2 копирайтера, 3 дизайнера",
+        "Сеть кофеен «Зерно» · сезонная кампания",
+        "Разработала ключевой визуал и адаптировала его в 60+ носителей: наружка, диджитал-баннеры, меню, POS в 40 точках",
+        "Собрала гайд по кампании для региональных франчайзи",
+        "Результат: трафик в кофейнях за период кампании увеличился на 18%, кампания вошла в шорт-лист отраслевого фестиваля",
+        "Сервис доставки «Полка» · запуск в новом городе",
+        "Визуал для таргета и соцсетей: 120 креативов за 3 месяца в 4 форматах",
+        "Вместе с медиабайером тестировала гипотезы по креативам",
+        "Результат: CTR лучшего креатива в 2,3 раза выше среднего по кабинету, стоимость заявки снизилась на 27%",
+        "Конверсия из клика в установку — 50%",
+        "Бренд косметики «Лён» · ребрендинг соцсетей",
+        "Новая визуальная система для Instagram и Telegram: сетка, шаблоны, правила съёмки",
+        "Результат: вовлечённость увеличилась на 40% за квартал, охват — на 33%, подписчики — на 12%",
+        "Конверсия из соцсетей на сайт — 3%, из перехода в покупку — 1,2%"
+      ]
+    }
+  ],
+  "about": {
+    "paragraphs": [
+      "Графический дизайнер с опытом в брендинге, SMM-дизайне и полиграфии. Разрабатываю айдентику и визуальные системы, создаю рекламные креативы и готовлю макеты к печати. Умею масштабировать дизайн на десятки носителей, работать в команде и соблюдать сроки. В работе учитываю задачи бизнеса: вместе с командой тестирую креативы и оцениваю их эффективность",
+      "5 ключевых результатов:",
+      "Для запуска онлайн-игры разработала фирменный стиль и 200+ шаблонов. По итогам запуска охват в Instagram вырос в 2,6 раза, CAC снизился на 40%",
+      "Обновила 8 форматов подарочных сертификатов студии автопортрета. После редизайна конверсия в покупку выросла с 2,5% до 3,2%, продажи — на 28%",
+      "Создала 120 рекламных креативов для сервиса доставки и тестировала гипотезы вместе с медиабайером. CTR лучшего креатива превысил средний по кабинету в 2,3 раза, стоимость заявки снизилась на 27%",
+      "Разработала ключевой визуал сезонной кампании сети кофеен и адаптировала его для 60+ носителей в 40 точках. За период кампании трафик вырос на 18%",
+      "Разработала новую визуальную систему соцсетей бренда косметики. За квартал вовлечённость выросла на 40%, охват — на 33%, число подписчиков — на 12%"
+    ]
+  },
+  "skills": [
+    "Figma",
+    "Adobe Illustrator",
+    "AI-инструменты",
+    "Adobe Photoshop"
+  ],
+  "socials": [
+    {
+      "label": "hh.ru",
+      "url": "https://hh.ru/applicant/profile/me?hhtmFrom=main",
+      "icon": "assets/img/social-hh.svg"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/laura-akhmetova-39777343a/",
+      "icon": "assets/img/social-linkedin.svg"
+    },
+    {
+      "label": "Сетка",
+      "url": "https://setka.ru/users/019d343f-13d5-7e82-8718-7d80f2fd6895",
+      "icon": "assets/img/social-setka.svg"
+    }
+  ]
+}
