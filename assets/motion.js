@@ -18,11 +18,6 @@
   const inject = (el, extra = '') => { el.innerHTML = `<span class="bow-inner ${extra}">${bow()}</span>`; };
   const heroes = [...document.querySelectorAll('[data-bow="hero"]')];
   heroes.forEach(el => inject(el));
-  document.querySelectorAll('[data-bow-variant]').forEach(el => {
-    inject(el);
-    el.classList.add('bow-preview');
-    el.setAttribute('data-motion', el.dataset.bowVariant);
-  });
   document.querySelectorAll('.bow-button').forEach(el => {
     const decoration = document.createElement('span');
     decoration.className = 'bow-button-art';
@@ -47,38 +42,35 @@
     setTheme(next); safeSet('laura-theme', next);
   });
 
-  const motionButtons = [...document.querySelectorAll('[data-select-motion]')];
-  const descriptions = {
-    sway: 'Ленты мягко покачиваются.',
-    draw: 'Бант постепенно завязывается.',
-    follow: 'Бант откликается на движение.'
-  };
-  motionButtons.forEach(el => {
-    const badge = document.createElement('span');
-    badge.className = 'motion-selected-label';
-    badge.textContent = 'Выбрано';
-    badge.setAttribute('aria-hidden', 'true');
-    el.append(badge);
-    const description = document.createElement('p');
-    description.className = 'motion-description';
-    description.textContent = descriptions[el.dataset.selectMotion] || '';
-    el.after(description);
+  // Follow mode is the permanent hero treatment, independent of past choices.
+  heroes.forEach(el => { el.dataset.motion = 'follow'; });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    const wipe = document.createElement('span');
+    wipe.className = 'project-wipe';
+    wipe.setAttribute('aria-hidden', 'true');
+    wipe.innerHTML = `<span class="project-wipe-bow project-wipe-bow-main">${bow()}</span><span class="project-wipe-bow project-wipe-bow-small">${bow()}</span><span class="project-wipe-bow project-wipe-bow-accent">${bow()}</span>`;
+    card.append(wipe);
+    card.addEventListener('pointerenter', e => {
+      if (!finePointer.matches) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--wipe-x', `${Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100))}%`);
+      card.style.setProperty('--wipe-y', `${Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100))}%`);
+    }, { passive: true });
+    card.addEventListener('pointermove', e => {
+      if (!finePointer.matches || reduce.matches) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--wipe-dx', `${((e.clientX - r.left) / r.width - .5) * 18}px`);
+      card.style.setProperty('--wipe-dy', `${((e.clientY - r.top) / r.height - .5) * 18}px`);
+    }, { passive: true });
+    card.addEventListener('pointerleave', () => {
+      card.style.removeProperty('--wipe-dx');
+      card.style.removeProperty('--wipe-dy');
+    }, { passive: true });
   });
-  const setMotion = (mode) => {
-    if (!['sway', 'draw', 'follow'].includes(mode)) mode = 'sway';
-    heroes.forEach(el => { el.dataset.motion = mode; });
-    motionButtons.forEach(el => {
-      const selected = el.dataset.selectMotion === mode;
-      el.classList.toggle('is-selected', selected);
-      el.setAttribute('aria-pressed', String(selected));
-    });
-    safeSet('laura-motion', mode);
-  };
-  setMotion(safeGet('laura-motion') || 'sway');
-  motionButtons.forEach(el => el.addEventListener('click', () => setMotion(el.dataset.selectMotion)));
 
   // Only update while a pointer is interacting; no continuous animation loop.
-  const interactives = [...heroes, ...document.querySelectorAll('[data-bow-variant="follow"]')];
+  const interactives = heroes;
   interactives.forEach(el => {
     const move = (x, y) => {
       if (reduce.matches || (el.dataset.bow === 'hero' && el.dataset.motion !== 'follow')) return;

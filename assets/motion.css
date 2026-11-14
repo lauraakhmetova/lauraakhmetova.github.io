@@ -63,18 +63,24 @@ body[data-theme="pink"] a:focus-visible, body[data-theme="pink"] button:focus-vi
 .bow-button:hover .bow-button-art .bow-art, .bow-button:focus-visible .bow-button-art .bow-art { transform: translateY(0) rotate(0); }
 body[data-theme="pink"] .bow-button-art { background: #fffaf5; }
 
-/* The entire artwork receives a soft tint while its caption remains above it. */
+/* A solid field expands across each image while its caption remains above. */
 .project-card { position: relative; }
-.project-card::before { content: ""; position: absolute; z-index: 1; inset: 0; border-radius: inherit; background: rgba(234, 179, 202, .23); opacity: 0; transition: opacity .5s ease; pointer-events: none; }
-.project-card:hover::before, .project-card:focus-visible::before { opacity: 1; }
-.project-image { transition: transform .75s cubic-bezier(.2,.8,.2,1); }
-.project-card:hover .project-image, .project-card:focus-visible .project-image { transform: scale(1.035); }
-@media (max-width: 700px) {
-  .motion-preview { height: 250px; }
-  .motion-preview .bow-preview { width: min(100%, 250px); height: 250px; }
+.project-wipe { --wipe-color: #eab3ca; --wipe-ink: #593c4d; position: absolute; z-index: 2; inset: 0; overflow: hidden; border-radius: inherit; background: var(--wipe-color); clip-path: circle(0% at var(--wipe-x, 50%) var(--wipe-y, 100%)); transition: clip-path .7s cubic-bezier(.65,0,.2,1); pointer-events: none; }
+.project-card:nth-child(3n + 2) .project-wipe { --wipe-color: #ae8d9f; --wipe-ink: #fff9f5; }
+.project-card:nth-child(3n + 3) .project-wipe { --wipe-color: #aebbad; --wipe-ink: #35483c; }
+.project-card:focus-visible .project-wipe { clip-path: circle(150% at var(--wipe-x, 50%) var(--wipe-y, 100%)); }
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-wipe { clip-path: circle(150% at var(--wipe-x, 50%) var(--wipe-y, 100%)); }
 }
+.project-wipe-bow { position: absolute; display: block; aspect-ratio: 1; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.project-wipe-bow-main { width: clamp(180px, 53%, 440px); left: 22%; top: -4%; transform: translate(var(--wipe-dx, 0px), var(--wipe-dy, 0px)) rotate(-14deg); --bow-color: transparent; --bow-line: var(--wipe-ink); }
+.project-wipe-bow-small { width: clamp(90px, 26%, 190px); left: 4%; bottom: 1%; transform: translate(calc(0px - var(--wipe-dx, 0px)), calc(0px - var(--wipe-dy, 0px))) rotate(23deg); --bow-color: var(--wipe-ink); --bow-line: var(--wipe-ink); }
+.project-wipe-bow-accent { width: clamp(76px, 19%, 150px); right: 4%; top: 5%; transform: translate(var(--wipe-dx, 0px), var(--wipe-dy, 0px)) rotate(22deg); --bow-color: var(--wipe-ink); --bow-line: var(--wipe-ink); }
+.project-image { transition: transform .75s cubic-bezier(.2,.8,.2,1); }
+@media (hover: hover) and (pointer: fine) { .project-card:hover .project-image { transform: scale(1.035); } }
+.project-card:focus-visible .project-image { transform: scale(1.035); }
 @media (prefers-reduced-motion: reduce) {
-  .bow-button-art .bow-art, .project-card::before, .project-image { transition: none !important; }
+  .bow-button-art .bow-art, .project-wipe, .project-wipe-bow, .project-image { transition: none !important; }
 }
 
 /* Content remains visible unless the observer is ready to reveal it. */
