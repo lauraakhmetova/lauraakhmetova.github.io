@@ -111,6 +111,29 @@
     document.querySelectorAll('[data-bow], [data-bow-variant]').forEach(el => observer.observe(el));
     body.classList.add('bow-observed');
   }
+  // The page is fully visible by default. Only prepare offscreen elements after
+  // the observer is installed; an anchor jump or fast scroll still reveals them.
+  if ('IntersectionObserver' in window && !reduce.matches) {
+    const targets = [...document.querySelectorAll('.section-head, .project-card, .experience, .about-grid > *, .skill, .contact > *')];
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
+        entry.target.classList.add('is-revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    }), { threshold: 0, rootMargin: '0px 0px -30px 0px' });
+    targets.forEach((el, index) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) return;
+      if (rect.bottom <= 0) return;
+      el.style.setProperty('--reveal-delay', `${Math.min(index % 3, 2) * 70}ms`);
+      el.classList.add('js-reveal');
+      revealObserver.observe(el);
+    });
+    // Fail safe if the observer never delivers (for example after a history jump).
+    window.setTimeout(() => targets.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-revealed');
+    }), 1500);
+  }
   if (!reduce.matches) {
     const loader = document.createElement('div');
     loader.className = 'bow-loader';

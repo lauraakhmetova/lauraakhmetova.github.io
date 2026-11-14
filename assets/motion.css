@@ -26,11 +26,6 @@ body[data-theme="pink"] [data-bow], body[data-theme="pink"] [data-bow-variant] {
 .bow-button:hover .bow-button-art, .bow-button:focus-visible .bow-button-art { transform: translateY(-50%) scale(1.25); opacity: 1; }
 .bow-button:hover, .bow-button:focus-visible { color: #292526; }
 body[data-theme="pink"] .bow-button-art { --bow-color: #fffaf5; --bow-line: #fffaf5; }
-.project-card .project-caption { position: relative; isolation: isolate; overflow: hidden; }
-.project-card .project-caption::before { content: ""; position: absolute; inset: 0; background: #eab3ca; transform: translateY(101%); z-index: -1; transition: transform .45s cubic-bezier(.2,.8,.2,1); }
-.project-card:hover .project-caption::before, .project-card:focus-visible .project-caption::before, .project-card:focus-within .project-caption::before { transform: translateY(0); }
-.project-card:hover .project-caption, .project-card:focus-visible .project-caption, .project-card:focus-within .project-caption { color: #292526; }
-body[data-theme="pink"] .project-caption::before { background: #fffaf5; }
 .bow-loader { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; color: #eab3ca; background: #292526; pointer-events: none; opacity: 1; transition: opacity .4s ease, visibility .4s; }
 .bow-loader.is-finished { opacity: 0; visibility: hidden; }
 .bow-loader-mark { width: 150px; text-align: center; font: 500 12px/1 sans-serif; letter-spacing: .25em; }
@@ -68,18 +63,33 @@ body[data-theme="pink"] a:focus-visible, body[data-theme="pink"] button:focus-vi
 .bow-button:hover .bow-button-art .bow-art, .bow-button:focus-visible .bow-button-art .bow-art { transform: translateY(0) rotate(0); }
 body[data-theme="pink"] .bow-button-art { background: #fffaf5; }
 
-/* A translucent wipe preserves the project image while marking the link. */
+/* The entire artwork receives a soft tint while its caption remains above it. */
 .project-card { position: relative; }
-.project-card::before { content: ""; position: absolute; z-index: 1; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; background: linear-gradient(90deg, rgba(234,179,202,.42), rgba(234,179,202,.08)); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
-.project-card::after { content: "Смотреть проект ↗"; position: absolute; z-index: 2; top: 22px; right: 22px; padding: 11px 16px; border-radius: 100px; color: #292727; background: #fffaf5; font-size: 12px; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
-.project-card:hover::before, .project-card:focus-visible::before { transform: scaleX(1); }
-.project-card:hover::after, .project-card:focus-visible::after { opacity: 1; transform: translateY(0); }
+.project-card::before { content: ""; position: absolute; z-index: 1; inset: 0; border-radius: inherit; background: rgba(234, 179, 202, .23); opacity: 0; transition: opacity .5s ease; pointer-events: none; }
+.project-card:hover::before, .project-card:focus-visible::before { opacity: 1; }
+.project-image { transition: transform .75s cubic-bezier(.2,.8,.2,1); }
+.project-card:hover .project-image, .project-card:focus-visible .project-image { transform: scale(1.035); }
 @media (max-width: 700px) {
   .motion-preview { height: 250px; }
   .motion-preview .bow-preview { width: min(100%, 250px); height: 250px; }
-  .project-card::before { aspect-ratio: 4 / 3; }
-  .project-card::after { top: 12px; right: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bow-button-art .bow-art, .project-card::before, .project-card::after { transition: none !important; }
+  .bow-button-art .bow-art, .project-card::before, .project-image { transition: none !important; }
+}
+
+/* Content remains visible unless the observer is ready to reveal it. */
+.js-reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); }
+.js-reveal.is-revealed { opacity: 1; transform: translateY(0); }
+.project-card.js-reveal { transform: translateY(40px); }
+.project-card.js-reveal.is-revealed { transform: translateY(0); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner > * { animation: hero-arrive .7s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-inner > :nth-child(1) { animation-delay: .55s; }
+  .hero-inner > :nth-child(2) { animation-delay: .65s; }
+  .hero-inner > :nth-child(3) { animation-delay: .75s; }
+  .hero-inner > :nth-child(4) { animation-delay: .85s; }
+}
+@keyframes hero-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal, .js-reveal.is-revealed { opacity: 1; transform: none; transition: none; }
 }
