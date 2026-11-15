@@ -1,24 +1,13 @@
-.bow-field{height:min(620px,max(0px,calc(100svh - var(--bow-footer-height,150px) - 24px)));overflow:hidden;background:#493340}
+.bow-field{position:relative;display:grid;place-items:center;isolation:isolate;container-type:size;height:min(620px,max(0px,calc(100svh - var(--bow-footer-height,150px) - 24px)));overflow:hidden;background:#493340}
 body[data-theme="pink"] .bow-field{background:#f7e8e9}
+.bow-field-title{position:relative;z-index:2;max-width:70%;margin:0;color:#f9eaed;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:clamp(48px,9vw,120px);font-size:min(clamp(48px,9vw,120px),25cqh);line-height:.98;letter-spacing:-.055em;text-align:center;pointer-events:none}
+body[data-theme="pink"] .bow-field-title{color:#563447}
 .bow-field-defs{position:absolute;width:0;height:0;overflow:hidden}
-.bow-field-grid{width:min(1320px,100%);height:100%;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:0;padding:12px 18px}
-.field-bow{display:grid;place-items:center;min-width:0;min-height:0;--tilt:-7deg;--duration:7s;--size:84%;animation:field-sway var(--duration) ease-in-out infinite;animation-play-state:paused;transform:rotate(var(--tilt));transition:transform .35s ease}
-.bow-field.is-visible .field-bow{animation-play-state:running}
-.field-bow svg{display:block;width:var(--size);height:var(--size);max-width:100%;max-height:100%;overflow:visible}
-.field-bow:nth-child(6n+1){animation-name:field-sway;--duration:7s;animation-delay:-2s}
-.field-bow:nth-child(6n+2){animation-name:field-float;--tilt:8deg;--duration:8s;--size:78%;animation-delay:-4s}
-.field-bow:nth-child(6n+3){animation-name:field-breathe;--tilt:-3deg;--duration:9s;--size:88%;animation-delay:-1s}
-.field-bow:nth-child(6n+4){animation-name:field-pendulum;--tilt:6deg;--duration:6.5s;animation-delay:-3s}
-.field-bow:nth-child(6n+5){animation-name:field-drift;--duration:8.5s;--size:72%;animation-delay:-5s}
-.field-bow:nth-child(6n){animation-name:field-twist;--tilt:4deg;--duration:7.5s;animation-delay:-2.5s}
+.bow-field-grid{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.field-bow{position:absolute;left:var(--x);top:var(--y);width:var(--bow-size);height:var(--bow-size);transform:translate(-50%,-50%);opacity:var(--alpha,.4);will-change:left,top}
+.field-bow svg{display:block;width:100%;height:100%;transform:rotate(var(--tilt,0deg))}
 .field-blush{color:#eab3ca}.field-ivory{color:#f5e8dd}.field-sage{color:#b9c8b3}.field-peach{color:#edbdab}.field-mauve{color:#c99db4}.field-cream{color:#ead9ca}
 body[data-theme="pink"] .field-blush{color:#9c476d}body[data-theme="pink"] .field-ivory{color:#663b52}body[data-theme="pink"] .field-sage{color:#5f7e68}body[data-theme="pink"] .field-peach{color:#ad6b56}body[data-theme="pink"] .field-mauve{color:#80516e}body[data-theme="pink"] .field-cream{color:#946350}
-@keyframes field-sway{0%,100%{transform:rotate(var(--tilt))}50%{transform:rotate(calc(var(--tilt) + 3deg))}}
-@keyframes field-float{0%,100%{transform:translateY(0) rotate(var(--tilt))}50%{transform:translateY(-5px) rotate(var(--tilt))}}
-@keyframes field-breathe{0%,100%{transform:rotate(var(--tilt)) scale(1)}50%{transform:rotate(var(--tilt)) scale(1.035)}}
-@keyframes field-pendulum{0%,100%{transform:rotate(calc(var(--tilt) - 3deg))}50%{transform:rotate(calc(var(--tilt) + 3deg))}}
-@keyframes field-drift{0%,100%{transform:translate(0,0) rotate(var(--tilt))}50%{transform:translate(4px,-4px) rotate(var(--tilt))}}
-@keyframes field-twist{0%,100%{transform:rotate(var(--tilt)) scale(1)}50%{transform:rotate(calc(var(--tilt) - 3deg)) scale(1.025)}}
-@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.field-bow:hover{animation:none;transform:translateY(-7px) rotate(calc(var(--tilt) + 5deg))}}
-@media(max-width:700px) and (orientation:portrait){.bow-field-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(6,minmax(0,1fr));padding:12px 8px}}
-@media(prefers-reduced-motion:reduce){.field-bow,.bow-field.is-visible .field-bow{animation:none;transition:none}}
+@media(max-width:700px){.bow-field-title{max-width:90%;font-size:clamp(36px,12vw,60px);font-size:min(clamp(36px,12vw,60px),24cqh)}.field-bow{width:var(--bow-mobile);height:var(--bow-mobile)}.field-bow:nth-child(n+25){display:none}}
+
+@media(prefers-reduced-motion:reduce){.field-bow{will-change:auto}}

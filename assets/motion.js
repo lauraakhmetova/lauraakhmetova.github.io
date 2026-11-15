@@ -46,16 +46,64 @@
   heroes.forEach(el => { el.dataset.motion = 'follow'; });
 
   document.querySelectorAll('.project-card').forEach(card => {
+    const source = card.dataset.hoverImage;
+    const original = card.querySelector('.project-image');
+    if (!source || !original) return;
+    const alternate = document.createElement('img');
+    alternate.className = 'project-image project-image-alt';
+    alternate.alt = '';
+    alternate.setAttribute('aria-hidden', 'true');
+    alternate.decoding = 'async';
+    card.insertBefore(alternate, original.nextSibling);
     const wipe = document.createElement('span');
     wipe.className = 'project-wipe';
     wipe.setAttribute('aria-hidden', 'true');
     wipe.innerHTML = `<span class="project-wipe-bow project-wipe-bow-main">${bow()}</span><span class="project-wipe-bow project-wipe-bow-small">${bow()}</span><span class="project-wipe-bow project-wipe-bow-accent">${bow()}</span>`;
     card.append(wipe);
+
+    // Start loading only when needed, then reuse the same image on later visits.
+    let loadPromise;
+    let active = false;
+    let generation = 0;
+    let timer;
+    const load = () => {
+      if (!loadPromise) loadPromise = new Promise(resolve => {
+        alternate.onload = () => resolve(true);
+        alternate.onerror = () => resolve(false);
+        alternate.src = source;
+      });
+      return loadPromise;
+    };
+    const begin = async () => {
+      if (active) return;
+      active = true;
+      const token = ++generation;
+      const loaded = await load();
+      if (!loaded || !active || token !== generation) return;
+      if (reduce.matches) {
+        card.classList.add('show-project-alt');
+        return;
+      }
+      card.classList.add('is-wipe-covering');
+      timer = window.setTimeout(() => {
+        if (!active || token !== generation) return;
+        card.classList.add('show-project-alt');
+        card.classList.remove('is-wipe-covering');
+      }, 850);
+    };
+    const end = () => {
+      if ((finePointer.matches && card.matches(':hover')) || card.matches(':focus-visible')) return;
+      active = false;
+      generation++;
+      window.clearTimeout(timer);
+      card.classList.remove('is-wipe-covering', 'show-project-alt');
+    };
     card.addEventListener('pointerenter', e => {
       if (!finePointer.matches) return;
       const r = card.getBoundingClientRect();
       card.style.setProperty('--wipe-x', `${Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100))}%`);
       card.style.setProperty('--wipe-y', `${Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100))}%`);
+      begin();
     }, { passive: true });
     card.addEventListener('pointermove', e => {
       if (!finePointer.matches || reduce.matches) return;
@@ -66,7 +114,10 @@
     card.addEventListener('pointerleave', () => {
       card.style.removeProperty('--wipe-dx');
       card.style.removeProperty('--wipe-dy');
+      end();
     }, { passive: true });
+    card.addEventListener('focus', () => { if (card.matches(':focus-visible')) begin(); });
+    card.addEventListener('blur', end);
   });
 
   // Only update while a pointer is interacting; no continuous animation loop.
