@@ -15,17 +15,6 @@
     <path class="bow-knot bow-shape" d="M225 193 C232 188 245 188 253 194 C260 201 261 215 255 224 C248 230 233 231 225 225 C219 217 219 201 225 193 Z"/>
   </svg>`;
 
-  const inject = (el, extra = '') => { el.innerHTML = `<span class="bow-inner ${extra}">${bow()}</span>`; };
-  const heroes = [...document.querySelectorAll('[data-bow="hero"]')];
-  heroes.forEach(el => inject(el));
-  document.querySelectorAll('.bow-button').forEach(el => {
-    const decoration = document.createElement('span');
-    decoration.className = 'bow-button-art';
-    decoration.setAttribute('aria-hidden', 'true');
-    decoration.innerHTML = bow().repeat(5);
-    el.prepend(decoration);
-  });
-
   const themeButton = document.querySelector('#theme-toggle');
   const setTheme = (theme) => {
     body.dataset.theme = theme;
@@ -42,148 +31,64 @@
     setTheme(next); safeSet('laura-theme', next);
   });
 
-  // Follow mode is the permanent hero treatment, independent of past choices.
-  heroes.forEach(el => { el.dataset.motion = 'follow'; });
-
-  document.querySelectorAll('.project-card').forEach(card => {
-    const source = card.dataset.hoverImage;
-    const original = card.querySelector('.project-image');
-    if (!source || !original) return;
-    const alternate = document.createElement('img');
-    alternate.className = 'project-image project-image-alt';
-    alternate.alt = '';
-    alternate.setAttribute('aria-hidden', 'true');
-    alternate.decoding = 'async';
-    card.insertBefore(alternate, original.nextSibling);
-    const wipe = document.createElement('span');
-    wipe.className = 'project-wipe';
-    wipe.setAttribute('aria-hidden', 'true');
-    wipe.innerHTML = `<span class="project-wipe-bow project-wipe-bow-main">${bow()}</span><span class="project-wipe-bow project-wipe-bow-small">${bow()}</span><span class="project-wipe-bow project-wipe-bow-accent">${bow()}</span>`;
-    card.append(wipe);
-
-    // Start loading only when needed, then reuse the same image on later visits.
-    let loadPromise;
-    let active = false;
-    let generation = 0;
-    let timer;
-    const load = () => {
-      if (!loadPromise) loadPromise = new Promise(resolve => {
-        alternate.onload = () => resolve(true);
-        alternate.onerror = () => resolve(false);
-        alternate.src = source;
-      });
-      return loadPromise;
-    };
-    const begin = async () => {
-      if (active) return;
-      active = true;
-      const token = ++generation;
-      const loaded = await load();
-      if (!loaded || !active || token !== generation) return;
-      if (reduce.matches) {
-        card.classList.add('show-project-alt');
-        return;
-      }
-      card.classList.add('is-wipe-covering');
-      timer = window.setTimeout(() => {
-        if (!active || token !== generation) return;
-        card.classList.add('show-project-alt');
-        card.classList.remove('is-wipe-covering');
-      }, 850);
-    };
-    const end = () => {
-      if ((finePointer.matches && card.matches(':hover')) || card.matches(':focus-visible')) return;
-      active = false;
-      generation++;
-      window.clearTimeout(timer);
-      card.classList.remove('is-wipe-covering', 'show-project-alt');
-    };
-    card.addEventListener('pointerenter', e => {
-      if (!finePointer.matches) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--wipe-x', `${Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100))}%`);
-      card.style.setProperty('--wipe-y', `${Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100))}%`);
-      begin();
+  const heroBow = document.querySelector('[data-bow="hero"]');
+  const hero = heroBow?.closest('.hero');
+  if (hero && heroBow) {
+    heroBow.innerHTML = `<span class="bow-inner">${bow()}</span>`;
+    hero.addEventListener('pointermove', event => {
+      if (!finePointer.matches || reduce.matches || !heroBow.offsetWidth) return;
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      heroBow.style.setProperty('--bow-x', `${x * 12}px`);
+      heroBow.style.setProperty('--bow-y', `${y * 10}px`);
     }, { passive: true });
-    card.addEventListener('pointermove', e => {
-      if (!finePointer.matches || reduce.matches) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--wipe-dx', `${((e.clientX - r.left) / r.width - .5) * 18}px`);
-      card.style.setProperty('--wipe-dy', `${((e.clientY - r.top) / r.height - .5) * 18}px`);
-    }, { passive: true });
-    card.addEventListener('pointerleave', () => {
-      card.style.removeProperty('--wipe-dx');
-      card.style.removeProperty('--wipe-dy');
-      end();
-    }, { passive: true });
-    card.addEventListener('focus', () => { if (card.matches(':focus-visible')) begin(); });
-    card.addEventListener('blur', end);
-  });
-
-  // Only update while a pointer is interacting; no continuous animation loop.
-  const interactives = heroes;
-  interactives.forEach(el => {
-    const move = (x, y) => {
-      if (reduce.matches || (el.dataset.bow === 'hero' && el.dataset.motion !== 'follow')) return;
-      const rect = el.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-      const dx = Math.max(-1, Math.min(1, (x - rect.left - rect.width / 2) / (rect.width / 2)));
-      const dy = Math.max(-1, Math.min(1, (y - rect.top - rect.height / 2) / (rect.height / 2)));
-      el.style.setProperty('--bow-x', `${dx * 12}px`);
-      el.style.setProperty('--bow-y', `${dy * 10}px`);
-      el.style.setProperty('--bow-tilt', `${dx * 9}deg`);
-    };
-    const reset = () => { el.style.removeProperty('--bow-x'); el.style.removeProperty('--bow-y'); el.style.removeProperty('--bow-tilt'); };
-    const target = el.dataset.bow === 'hero' ? document : el;
-    const inHero = e => {
-      if (target !== document) return true;
-      const area = el.parentElement.getBoundingClientRect();
-      return e.clientX >= area.left && e.clientX <= area.right && e.clientY >= area.top && e.clientY <= area.bottom;
-    };
-    target.addEventListener('pointermove', e => { if ((finePointer.matches || e.pointerType === 'touch') && inHero(e)) move(e.clientX, e.clientY); else reset(); }, { passive: true });
-    target.addEventListener('pointerdown', e => { if (e.pointerType === 'touch' && inHero(e)) move(e.clientX, e.clientY); }, { passive: true });
-    target.addEventListener('pointerleave', reset, { passive: true });
-    target.addEventListener('pointerup', reset, { passive: true });
-    target.addEventListener('pointercancel', reset, { passive: true });
-  });
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      entry.target.classList.toggle('bow-in-view', entry.isIntersecting);
-    }), { rootMargin: '120px' });
-    document.querySelectorAll('[data-bow], [data-bow-variant]').forEach(el => observer.observe(el));
-    body.classList.add('bow-observed');
-  }
-  // The page is fully visible by default. Only prepare offscreen elements after
-  // the observer is installed; an anchor jump or fast scroll still reveals them.
-  if ('IntersectionObserver' in window && !reduce.matches) {
-    const targets = [...document.querySelectorAll('.section-head, .project-card, .experience, .about-grid > *, .skill, .contact > *')];
-    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
-        entry.target.classList.add('is-revealed');
-        revealObserver.unobserve(entry.target);
-      }
-    }), { threshold: 0, rootMargin: '0px 0px -30px 0px' });
-    targets.forEach((el, index) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) return;
-      if (rect.bottom <= 0) return;
-      el.style.setProperty('--reveal-delay', `${Math.min(index % 3, 2) * 70}ms`);
-      el.classList.add('js-reveal');
-      revealObserver.observe(el);
+    hero.addEventListener('pointerleave', () => {
+      heroBow.style.removeProperty('--bow-x');
+      heroBow.style.removeProperty('--bow-y');
     });
-    // Fail safe if the observer never delivers (for example after a history jump).
-    window.setTimeout(() => targets.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-revealed');
-    }), 1500);
   }
-  if (!reduce.matches) {
-    const loader = document.createElement('div');
-    loader.className = 'bow-loader';
-    loader.setAttribute('aria-hidden', 'true');
-    loader.innerHTML = `<div class="bow-loader-mark">${bow()}<span>LAURA</span></div>`;
-    body.append(loader);
-    window.setTimeout(() => loader.classList.add('is-finished'), 850);
-    window.setTimeout(() => loader.remove(), 1350);
-  }
+
+  document.querySelectorAll('.project-card[data-hover-image]').forEach(card => {
+    const media = card.querySelector('.project-media');
+    const source = card.dataset.hoverImage;
+    if (!media || !source || card.dataset.hoverPreview === 'off') return;
+
+    let requested = false;
+    let loaded = false;
+    let hovering = false;
+    let focused = false;
+
+    const update = () => {
+      const active = hovering || focused;
+      card.classList.toggle('show-project-alt', active && loaded);
+      if (!active || requested) return;
+
+      requested = true;
+      const image = document.createElement('img');
+      image.className = 'project-image project-image-alt';
+      image.alt = '';
+      image.decoding = 'async';
+      image.setAttribute('aria-hidden', 'true');
+      image.addEventListener('load', () => {
+        loaded = true;
+        update();
+      }, { once: true });
+      image.addEventListener('error', () => {
+        image.remove();
+        requested = false;
+      }, { once: true });
+      media.append(image);
+      image.src = source;
+    };
+
+    card.addEventListener('pointerenter', event => {
+      if (!finePointer.matches || event.pointerType === 'touch') return;
+      hovering = true;
+      update();
+    });
+    card.addEventListener('pointerleave', () => { hovering = false; update(); });
+    card.addEventListener('focus', () => { focused = card.matches(':focus-visible'); update(); });
+    card.addEventListener('blur', () => { focused = false; update(); });
+  });
 })();

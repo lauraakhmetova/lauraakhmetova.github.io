@@ -1,8 +1,0 @@
-/* A quiet, non-interactive ribbon pattern behind the lower page. */
-.ambient-bows { position: fixed; inset: 0; z-index: 0; clip-path: inset(var(--ambient-cut-top, 100%) 0 var(--ambient-cut-bottom, 0px) 0); overflow: hidden; pointer-events: none; background-repeat: repeat; background-size: 410px 400px; background-position: 0 var(--ambient-shift, 0px); opacity: .13; -webkit-mask-image: linear-gradient(to right, #000 0%, #000 18%, rgba(0,0,0,.18) 31%, rgba(0,0,0,.18) 69%, #000 82%, #000 100%); mask-image: linear-gradient(to right, #000 0%, #000 18%, rgba(0,0,0,.18) 31%, rgba(0,0,0,.18) 69%, #000 82%, #000 100%); }
-body[data-theme="pink"] .ambient-bows { opacity: .12; }
-#experience, #about, #skills, .contact, .footer { position: relative; z-index: 1; }
-@media (max-width: 700px) {
-  .ambient-bows { background-size: 410px 480px; opacity: .10; -webkit-mask-image: linear-gradient(to right, #000, rgba(0,0,0,.22) 24%, rgba(0,0,0,.22) 76%, #000); mask-image: linear-gradient(to right, #000, rgba(0,0,0,.22) 24%, rgba(0,0,0,.22) 76%, #000); }
-  body[data-theme="pink"] .ambient-bows { opacity: .1; }
-}
