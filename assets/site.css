@@ -34,3 +34,27 @@ a:focus-visible,button:focus-visible{outline:3px solid #eab3ca;outline-offset:5p
 #about .about-results strong{color:var(--pink);font-weight:600}
 body[data-theme="pink"] #about .about-results p{border-color:rgba(106,48,75,.24)}
 @media(max-width:700px){#about .about-copy{font-size:20px}}
+
+.project-card--game {
+  background: linear-gradient(115deg, #7f1927, #4b0a15);
+}
+.project-card--game .project-image {
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .project-list .project-card--game {
+    aspect-ratio: auto;
+    padding-bottom: 74px;
+  }
+  .project-card--game .project-image {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .project-card--game .project-image:not(.project-image-alt) {
+    position: relative;
+  }
+  .project-list .project-card--game:is(:hover, :focus-visible) .project-image {
+    transform: none;
+  }
+}

@@ -12,7 +12,7 @@
 
 | Проект | Текущий файл для наведения |
 | --- | --- |
-| Игра для двоих | `assets/img/vZhEWarJivnNCLLARoXgc0Ys5g.png` (временный кадр) |
+| Игра для двоих | `assets/img/igra-dlya-dvoih-cover.jpg` (обложка кейса) |
 | Growly | `assets/img/vZhEWarJivnNCLLARoXgc0Ys5g.png` |
 | Glidex | `assets/img/PVMr2ShgT1v08X9fNPpsbdRQwmg.png` |
 | Aether Studio | `assets/img/2wIifx4QZtr3Qon18QBxcBrtBqg.png` |

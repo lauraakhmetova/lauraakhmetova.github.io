@@ -11,3 +11,9 @@
 .table-scroll{width:100%;max-width:100%;overflow-x:auto}
 body[data-theme=pink] .case-section h2,body[data-theme=pink] .case-stats>div span:first-child,body[data-theme=pink] .game-table th,body[data-theme=pink] .channels .game-panel p:first-child,body[data-theme=pink] .anatomy .game-panel p:first-child,body[data-theme=pink] .game-kicker{color:#702343}
 @media(max-width:700px){.case-section{grid-template-columns:minmax(0,1fr)}}
+
+.detail-cover--game {
+  width: min(100%, 850px);
+  height: auto;
+  margin-inline: auto;
+}
