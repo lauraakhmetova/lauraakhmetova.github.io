@@ -1,20 +1,59 @@
-/* Each work keeps its intrinsic aspect ratio at a shared ribbon height. */
-.strip-shell{--ribbon-height:320px;--ribbon-gap:16px}
-.strip{display:block;overflow:hidden;padding:0}
-.strip-track,.strip-copy{display:flex;align-items:stretch;gap:var(--ribbon-gap)}
-.strip-track{width:max-content;padding-right:var(--ribbon-gap);animation:ticker-ribbon 70s linear infinite}
-.strip-copy{flex-shrink:0}
-.strip-item{flex:0 0 auto;width:auto;height:var(--ribbon-height);aspect-ratio:var(--ratio);overflow:hidden;border-radius:24px;background:transparent}
-.strip-item img,.strip-item video{display:block;width:100%;height:100%;max-width:none;object-fit:cover}
-.strip-track>.strip-item:nth-child(1),.strip-copy>.strip-item:nth-child(1){--ratio:1190 / 1454}
-.strip-track>.strip-item:nth-child(2),.strip-copy>.strip-item:nth-child(2){--ratio:1920 / 1300}
-/* The third video is encoded to the artwork’s portrait crop, without its original side bars. */
-.strip-track>.strip-item:nth-child(3),.strip-copy>.strip-item:nth-child(3){--ratio:1585 / 1716}
-.strip-track>.strip-item:nth-child(4),.strip-copy>.strip-item:nth-child(4){--ratio:756 / 978}
-.strip-track>.strip-item:nth-child(5),.strip-copy>.strip-item:nth-child(5){--ratio:1024 / 768}
-.strip-track>.strip-item:nth-child(6),.strip-copy>.strip-item:nth-child(6){--ratio:1024 / 768}
-.strip-pause{position:static;display:block;margin:12px 24px 0 auto;padding:7px 11px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;font-size:11px;line-height:1.2}
-@keyframes ticker-ribbon{to{transform:translateX(-50%)}}
-@media(max-width:1000px){.strip-shell{--ribbon-height:220px}}
-@media(max-width:700px){.strip-shell{--ribbon-height:180px}.strip-pause{margin-right:18px}}
-@media(prefers-reduced-motion:reduce){.strip-track{animation:none}}
+.strip-shell {
+  --ribbon-height: clamp(220px, calc(20vw + 112px), 400px);
+  --ribbon-gap: 16px;
+}
+
+.strip {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
+
+.strip:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: -3px;
+}
+
+.strip-track {
+  display: flex;
+  width: max-content;
+  gap: var(--ribbon-gap);
+  user-select: none;
+}
+
+@media (any-pointer: fine) {
+  .strip-track {
+    cursor: grab;
+  }
+
+  .strip.is-dragging,
+  .strip.is-dragging .strip-track {
+    cursor: grabbing;
+  }
+}
+
+/* Each work keeps its aspect ratio at the shared ribbon height. */
+.strip-item {
+  flex: 0 0 auto;
+  height: var(--ribbon-height);
+  aspect-ratio: var(--ratio);
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.strip-item img,
+.strip-item video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.strip-item:nth-child(1) { --ratio: 1190 / 1454; }
+.strip-item:nth-child(2) { --ratio: 1920 / 1300; }
+/* The third video uses the artwork’s portrait crop. */
+.strip-item:nth-child(3) { --ratio: 1585 / 1716; }
+.strip-item:nth-child(4) { --ratio: 756 / 978; }
+.strip-item:nth-child(5),
+.strip-item:nth-child(6) { --ratio: 4 / 3; }

@@ -58,7 +58,7 @@
     const wipe = document.createElement('span');
     wipe.className = 'project-wipe';
     wipe.setAttribute('aria-hidden', 'true');
-    wipe.innerHTML = `<span class="project-wipe-bow project-wipe-bow-main">${bow()}</span><span class="project-wipe-bow project-wipe-bow-small">${bow()}</span><span class="project-wipe-bow project-wipe-bow-accent">${bow()}</span>`;
+    wipe.innerHTML = '<svg class="project-wipe-bow" viewBox="0 0 120 90" fill="none" focusable="false"><use href="#skills-bow-outline"/></svg>';
     card.append(wipe);
 
     // Start loading only when needed, then reuse the same image on later visits.
@@ -105,17 +105,7 @@
       card.style.setProperty('--wipe-y', `${Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100))}%`);
       begin();
     }, { passive: true });
-    card.addEventListener('pointermove', e => {
-      if (!finePointer.matches || reduce.matches) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--wipe-dx', `${((e.clientX - r.left) / r.width - .5) * 18}px`);
-      card.style.setProperty('--wipe-dy', `${((e.clientY - r.top) / r.height - .5) * 18}px`);
-    }, { passive: true });
-    card.addEventListener('pointerleave', () => {
-      card.style.removeProperty('--wipe-dx');
-      card.style.removeProperty('--wipe-dy');
-      end();
-    }, { passive: true });
+    card.addEventListener('pointerleave', end, { passive: true });
     card.addEventListener('focus', () => { if (card.matches(':focus-visible')) begin(); });
     card.addEventListener('blur', end);
   });

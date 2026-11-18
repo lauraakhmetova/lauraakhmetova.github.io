@@ -70,21 +70,18 @@ body[data-theme="pink"] .bow-button-art .bow-art { --bow-color: #fff; --bow-line
 
 /* A solid field expands across each image while its caption remains above. */
 .project-card { position: relative; }
-.project-wipe { --wipe-color: #eab3ca; --wipe-ink: #593c4d; position: absolute; z-index: 2; inset: 0; overflow: hidden; border-radius: inherit; background: var(--wipe-color); clip-path: circle(0% at var(--wipe-x, 50%) var(--wipe-y, 100%)); transition: clip-path .6s cubic-bezier(.65,0,.2,1); pointer-events: none; }
+.project-wipe { --wipe-color: #eab3ca; --wipe-ink: #8c4967; position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; overflow: hidden; border-radius: inherit; background: var(--wipe-color); clip-path: circle(0% at var(--wipe-x, 50%) var(--wipe-y, 100%)); transition: clip-path .6s cubic-bezier(.65,0,.2,1); pointer-events: none; }
 .project-card:nth-child(3n + 2) .project-wipe { --wipe-color: #ae8d9f; --wipe-ink: #fff9f5; }
 .project-card:nth-child(3n + 3) .project-wipe { --wipe-color: #aebbad; --wipe-ink: #35483c; }
 .project-card.is-wipe-covering .project-wipe { clip-path: circle(150% at var(--wipe-x, 50%) var(--wipe-y, 100%)); transition-duration: .7s; }
 .project-image-alt { z-index: 1; opacity: 0; pointer-events: none; }
 .project-card.show-project-alt .project-image-alt { opacity: 1; }
-.project-wipe-bow { position: absolute; display: block; aspect-ratio: 1; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
-.project-wipe-bow-main { width: clamp(180px, 53%, 440px); left: 22%; top: -4%; transform: translate(var(--wipe-dx, 0px), var(--wipe-dy, 0px)) rotate(-14deg); --bow-color: transparent; --bow-line: var(--wipe-ink); }
-.project-wipe-bow-small { width: clamp(90px, 26%, 190px); left: 4%; bottom: 1%; transform: translate(calc(0px - var(--wipe-dx, 0px)), calc(0px - var(--wipe-dy, 0px))) rotate(23deg); --bow-color: var(--wipe-ink); --bow-line: var(--wipe-ink); }
-.project-wipe-bow-accent { width: clamp(76px, 19%, 150px); right: 4%; top: 5%; transform: translate(var(--wipe-dx, 0px), var(--wipe-dy, 0px)) rotate(22deg); --bow-color: var(--wipe-ink); --bow-line: var(--wipe-ink); }
+.project-wipe-bow { display: block; width: clamp(68px, 17%, 112px); color: var(--wipe-ink); }
 .project-image { transition: transform .75s cubic-bezier(.2,.8,.2,1); }
 @media (hover: hover) and (pointer: fine) { .project-card:hover .project-image { transform: scale(1.035); } }
 .project-card:focus-visible .project-image { transform: scale(1.035); }
 @media (prefers-reduced-motion: reduce) {
-  .bow-button-art .bow-art, .project-wipe, .project-wipe-bow, .project-image { transition: none !important; }
+  .bow-button-art .bow-art, .project-wipe, .project-image { transition: none !important; }
 }
 
 /* Content remains visible unless the observer is ready to reveal it. */
